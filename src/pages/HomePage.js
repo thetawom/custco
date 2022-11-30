@@ -17,15 +17,17 @@ import ThumbsUpImage from "../assets/images/thumbs-up.png";
 import ShoppingCartImage from "../assets/images/cart.png";
 import PriceTagImage from "../assets/images/price-tag.png";
 import * as React from "react";
+import {Link} from "react-router-dom";
+import Navbar from "../components/Navbar";
 
-const BigButton = ({title, icon}) => {
+const BigButton = ({title, icon, to}) => {
     const StyledIcon = styled(icon)({
         fontSize: "50px",
         marginBottom: "20px",
         color: "black"
     });
     return (
-        <Button variant="outlined" sx={{
+        <Button variant="outlined" component={Link} to={to} sx={{
             width: "240px",
             height: "220px",
             margin: "30px",
@@ -36,7 +38,6 @@ const BigButton = ({title, icon}) => {
             flexDirection: "column",
             border: "2px solid",
             borderColor: "primary.dark",
-            borderRadius: "20px",
             ":hover": {
                 borderWidth: "2px",
                 borderColor: "primary.dark"
@@ -50,7 +51,8 @@ const BigButton = ({title, icon}) => {
 
 
 function HomePage() {
-    return (
+    return (<>
+        <Navbar />
         <Container maxWidth={false} disableGutters>
             <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center" height="55vh" bgcolor="primary.light">
                 <Grid container height="80%">
@@ -64,24 +66,24 @@ function HomePage() {
                 </Grid>
                 <Box position="absolute" marginTop="40px" paddingX="20px">
                     <Typography variant="h3" fontWeight="800">Start or Join Group Orders to Get Free Shipping</Typography>
-                    <Paper sx={{marginTop: "40px", marginX: "5px", display: "flex", justifyContent: "center"}}>
-                        <InputBase sx={{fontSize: "24px", marginLeft: "32px", width: "100%"}} placeholder="Search by platform, dorm, or order no." />
+                    <Paper sx={{marginTop: "40px", marginX: "10px", display: "flex", justifyContent: "center"}}>
+                        <InputBase sx={{fontSize: "24px", marginLeft: "20px", width: "100%"}} placeholder="Search by platform, dorm, or order no." />
                         <IconButton type="button" sx={{padding: "16px"}}>
                             <SearchIcon fontSize="large" />
                         </IconButton>
                     </Paper>
-                    <Box position="absolute" display={{xs: "none", md: "block"}} left="-25px" top="137px">
+                    <Box position="absolute" display={{xs: "none", md: "block"}} left="-26px" top="137px">
                         <img src={PriceTagImage} alt=""/>
                     </Box>
                 </Box>
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center" flexWrap="wrap" paddingTop="40px">
-                <BigButton icon={CardGiftcardIcon} title="Browse Orders"/>
+                <BigButton icon={CardGiftcardIcon} title="Browse Orders" to="/orders"/>
                 <BigButton icon={AddIcon} title="Start an Order"/>
                 <BigButton icon={ShoppingCartIcon} title="My Orders"/>
             </Box>
         </Container>
-    );
+    </>);
 }
 
 export default HomePage;

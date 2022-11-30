@@ -5,13 +5,15 @@ import {
     Route,
 } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import {createTheme, ThemeProvider} from "@mui/material";
+import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import { StyledEngineProvider } from '@mui/material/styles';
 import HomePage from "./pages/HomePage";
+import JoinOrdersPage from "./pages/JoinOrdersPage";
+import {OrdersProvider} from "./contexts/ordersContext";
 
 const theme = createTheme({
     typography: {
-        fontSize: 12,
+        fontSize: 13,
         fontFamily: "Lato, sans-serif",
         h1: {
             fontWeight: 800,
@@ -24,9 +26,12 @@ const theme = createTheme({
             fontWeight: 600,
         },
         h4: {
-            fontWeight: 600,
+            fontWeight: 800,
         },
         h5: {
+            fontWeight: 600,
+        },
+        h6: {
             fontWeight: 600,
         }
     },
@@ -34,15 +39,34 @@ const theme = createTheme({
         primary: {
             main: "#6CACE4",
             light: "#DDEAF1",
-            dark: "#0072CE"
+            dark: "#0072CE",
+            contrastText: "white",
+        },
+        secondary: {
+            main: "#FFBB45",
         },
         background: {
             default: "#F5F5F5",
-            paper: "white",
+            gray: "#F5F5F5",
+            white: "white",
+        },
+        success: {
+            main: "#3FB63D",
+            contrastText: "white",
         }
     },
     shape: {
-        borderRadius: 30,
+        borderRadius: 8,
+    },
+    components: {
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: {
+                    fontSize: "1em",
+                    borderRadius: 2
+                }
+            }
+        },
     }
 });
 
@@ -50,13 +74,17 @@ function App() {
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<LandingPage />}/>
-                        <Route path="/home" element={<HomePage />} />
-                        <Route path="/users" element={<h1>Users</h1>}/>
-                    </Routes>
-                </Router>
+                <CssBaseline />
+                <OrdersProvider>
+                    <Router>
+                        <Routes>
+                            <Route path="/" element={<LandingPage />}/>
+                            <Route path="/home" element={<HomePage />} />
+                            <Route path="/orders/" element={<JoinOrdersPage />}/>
+                            <Route path="/orders/platform/:id" element={<JoinOrdersPage />}/>
+                        </Routes>
+                    </Router>
+                </OrdersProvider>
             </ThemeProvider>
         </StyledEngineProvider>
     );

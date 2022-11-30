@@ -1,8 +1,8 @@
 import {Box} from "@mui/material";
 
-function Span({sx, children}) {
+function Span({sx, color, textTransform, children}) {
     return (
-        <Box component="span" sx={sx}>
+        <Box component="span" color={color} textTransform={textTransform} sx={sx}>
             {children}
         </Box>
     );

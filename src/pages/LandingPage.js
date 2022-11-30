@@ -22,10 +22,10 @@ function LandingPage() {
                         <Typography variant="h4" sx={{marginTop: "20px", marginBottom: "50px"}}>
                             Connect with others looking for a great <Span sx={{color: "primary.dark"}}>group&#8209;buy</Span>.
                         </Typography>
-                        <Button component={Link} to="/home" variant="contained" size="large" sx={{textAlign: "center", color: "white"}}>
+                        <Button component={Link} to="/home" variant="contained" size="large" sx={{textAlign: "center"}}>
                             <Typography variant="h5">Login</Typography>
                         </Button>
-                        <Button component={Link} to="/home" variant="outlined" size="large" sx={{textAlign: "center", backgroundColor: "white", ":hover": {backgroundColor: "background.gray"}}}>
+                        <Button component={Link} to="/home" variant="outlined" size="large" sx={{textAlign: "center", backgroundColor: "white"}}>
                             <Typography variant="h5">Register</Typography>
                         </Button>
                     </Grid>
