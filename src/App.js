@@ -64,6 +64,9 @@ const theme = createTheme({
                 tooltip: {
                     fontSize: "1em",
                     borderRadius: 2
+                },
+                tooltipPlacementBottom: {
+                    top: "-5px"
                 }
             }
         },
