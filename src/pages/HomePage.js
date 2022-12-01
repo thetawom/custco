@@ -53,7 +53,7 @@ const BigButton = ({title, icon, to}) => {
 function HomePage() {
     return (<>
         <Navbar />
-        <Container maxWidth={false} disableGutters>
+        <Container maxWidth={false} disableGutters sx={{marginTop: "40px"}}>
             <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center" height="55vh" bgcolor="primary.light">
                 <Grid container height="80%">
                     <Grid item xs={6} sm={4} md={2} display="flex" justifyContent="end" alignItems="start" overflow="hidden">
@@ -64,7 +64,7 @@ function HomePage() {
                         <img src={ShoppingCartImage} alt="" style={{width: "auto", height: "85%", marginLeft: "20px"}}/>
                     </Grid>
                 </Grid>
-                <Box position="absolute" marginTop="40px" paddingX="20px">
+                <Box position="absolute" marginTop="50px" paddingX="20px">
                     <Typography variant="h3" fontWeight="800">Start or Join Group Orders to Get Free Shipping</Typography>
                     <Paper sx={{marginTop: "40px", marginX: "10px", display: "flex", justifyContent: "center"}}>
                         <InputBase sx={{fontSize: "24px", marginLeft: "20px", width: "100%"}} placeholder="Search by platform, dorm, or order no." />
@@ -77,7 +77,7 @@ function HomePage() {
                     </Box>
                 </Box>
             </Box>
-            <Box display="flex" justifyContent="center" alignItems="center" flexWrap="wrap" paddingTop="40px">
+            <Box display="flex" justifyContent="center" alignItems="center" flexWrap="wrap" paddingTop="25px">
                 <BigButton icon={CardGiftcardIcon} title="Browse Orders" to="/orders"/>
                 <BigButton icon={AddIcon} title="Start an Order"/>
                 <BigButton icon={ShoppingCartIcon} title="My Orders"/>
