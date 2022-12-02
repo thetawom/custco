@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.073c9b0a.css",
-    "main.js": "./static/js/main.d3e9fa3a.js",
-    "static/js/787.d0cdf5fa.chunk.js": "./static/js/787.d0cdf5fa.chunk.js",
-    "static/media/homedepot-square.png": "./static/media/homedepot-square.4b4484644cf87ac986fe.png",
-    "static/media/amazon-square.png": "./static/media/amazon-square.9e2fae1caa05d8c2a054.png",
-    "static/media/walmart-square.jpg": "./static/media/walmart-square.ac14d91a451bbaa97837.jpg",
-    "static/media/target-square.png": "./static/media/target-square.18e15285d7e22f9de408.png",
-    "static/media/landing.svg": "./static/media/landing.6b0f1b0e44fc203496002462b8157dde.svg",
-    "static/media/costco-square.png": "./static/media/costco-square.1973c6a8795805b56b22.png",
-    "static/media/jcpenney-square.png": "./static/media/jcpenney-square.ae7798046c0494d37287.png",
-    "static/media/bestbuy-square.svg": "./static/media/bestbuy-square.51636709a3bc7aa429ffcc2b0491bded.svg",
-    "index.html": "./index.html",
-    "main.073c9b0a.css.map": "./static/css/main.073c9b0a.css.map",
-    "main.d3e9fa3a.js.map": "./static/js/main.d3e9fa3a.js.map",
-    "787.d0cdf5fa.chunk.js.map": "./static/js/787.d0cdf5fa.chunk.js.map"
+    "main.css": "/custco/static/css/main.073c9b0a.css",
+    "main.js": "/custco/static/js/main.046b51b7.js",
+    "static/js/787.d0cdf5fa.chunk.js": "/custco/static/js/787.d0cdf5fa.chunk.js",
+    "static/media/homedepot-square.png": "/custco/static/media/homedepot-square.4b4484644cf87ac986fe.png",
+    "static/media/amazon-square.png": "/custco/static/media/amazon-square.9e2fae1caa05d8c2a054.png",
+    "static/media/walmart-square.jpg": "/custco/static/media/walmart-square.ac14d91a451bbaa97837.jpg",
+    "static/media/target-square.png": "/custco/static/media/target-square.18e15285d7e22f9de408.png",
+    "static/media/landing.svg": "/custco/static/media/landing.6b0f1b0e44fc203496002462b8157dde.svg",
+    "static/media/costco-square.png": "/custco/static/media/costco-square.1973c6a8795805b56b22.png",
+    "static/media/jcpenney-square.png": "/custco/static/media/jcpenney-square.ae7798046c0494d37287.png",
+    "static/media/bestbuy-square.svg": "/custco/static/media/bestbuy-square.51636709a3bc7aa429ffcc2b0491bded.svg",
+    "index.html": "/custco/index.html",
+    "main.073c9b0a.css.map": "/custco/static/css/main.073c9b0a.css.map",
+    "main.046b51b7.js.map": "/custco/static/js/main.046b51b7.js.map",
+    "787.d0cdf5fa.chunk.js.map": "/custco/static/js/787.d0cdf5fa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.d3e9fa3a.js"
+    "static/js/main.046b51b7.js"
   ]
 }
