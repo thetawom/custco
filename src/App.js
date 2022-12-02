@@ -79,7 +79,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <OrdersProvider>
-                    <Router>
+                    <Router basename={process.env.PUBLIC_URL}>
                         <Routes>
                             <Route path="/" element={<LandingPage />}/>
                             <Route path="/home" element={<HomePage />} />
