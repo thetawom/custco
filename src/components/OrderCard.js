@@ -1,10 +1,11 @@
 import {
+    Alert,
     Avatar,
     Badge,
     Button,
     ButtonBase, Card,
     Divider,
-    LinearProgress,
+    LinearProgress, Snackbar,
     Stack, Tooltip,
     Typography
 } from "@mui/material";
@@ -12,10 +13,25 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import {Link} from "react-router-dom";
 
-const OrderCard = ({order, copyOrderId}) => {
+const OrderCard = ({order, joinButton, outlined}) => {
 
-    return (
-        <Card sx={{minWidth: "350px", minHeight: "210px"}}>
+    const [open, setOpen] = React.useState(false);
+    const copyOrderId = async (orderId) => {
+        await navigator.clipboard.writeText(orderId);
+        setOpen(true);
+    }
+    const handleClose = () => {
+        setOpen(false);
+    }
+
+    let cardSx = {minWidth: "350px", minHeight: "210px"}
+    if (outlined) {
+        cardSx.border = "1px solid";
+        cardSx.borderColor = "primary.main";
+    }
+
+    return (<>
+        <Card sx={cardSx} variant={outlined ? "outlined" : "elevation"}>
             <Stack direction="row" justifyContent="space-between" padding="8px 15px" textAlign="center">
                 <Typography variant="p" fontWeight="700" textTransform="uppercase">{order.platform.name}</Typography>
                 <Tooltip title={"Copy order ID"} placement="bottom" PopperProps={{sx: {fontSize: "0.8em"}}} arrow enterDelay={300} enterNextDelay={300}>
@@ -51,7 +67,7 @@ const OrderCard = ({order, copyOrderId}) => {
                     <Typography variant="caption">Pay By</Typography>
                     <Typography variant="p" lineHeight={0.8} marginBottom={0.6}>{order.paymentMethod.name}</Typography>
                 </Stack>
-                <Button component={Link} to={`/orders/${order.id}`} sx={{
+                <Button component={Link} to={`/orders/${order.id}`} disabled={!joinButton} sx={{
                     color: "primary.contrastText",
                     backgroundColor: "primary.main",
                     fontSize: 14,
@@ -59,13 +75,26 @@ const OrderCard = ({order, copyOrderId}) => {
                     padding: "3px 20px",
                     ":hover": {
                         backgroundColor: "primary.dark",
+                    },
+                    "&.Mui-disabled": {
+                        color: "primary.main",
+                        backgroundColor: "primary.light",
                     }
                 }}>
                     Join
                 </Button>
             </Stack>
         </Card>
-    );
+        <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+        >
+            <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+                Order ID copied to clipboard!
+            </Alert>
+        </Snackbar>
+    </>);
 }
 
 export default OrderCard;
