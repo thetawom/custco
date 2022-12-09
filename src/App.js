@@ -54,7 +54,7 @@ const theme = createTheme({
         success: {
             main: "#3FB63D",
             contrastText: "white",
-        }
+        },
     },
     shape: {
         borderRadius: 8,

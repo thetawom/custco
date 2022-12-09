@@ -1,12 +1,10 @@
 import React, {useContext} from "react";
 import {
-    Alert,
     Box,
     Container,
     IconButton,
     InputBase,
     Paper,
-    Snackbar,
     Stack,
     Typography,
     Select,
@@ -58,15 +56,6 @@ class SortOption {
 function JoinOrdersPage() {
 
     const {orders} = useContext(OrdersContext);
-
-    const [open, setOpen] = React.useState(false);
-    const copyOrderId = async (orderId) => {
-        await navigator.clipboard.writeText(orderId);
-        setOpen(true);
-    }
-    const handleClose = () => {
-        setOpen(false);
-    }
 
     const [sort, setSort] = React.useState(SortOption.OrderProgressHL);
     const handleChange = (event) => {
@@ -139,21 +128,12 @@ function JoinOrdersPage() {
                 </Card>
             }
             <Box display="flex" flexWrap="wrap" gap="30px 50px" justifyContent="start" alignItems="start" marginBottom="80px">
-                {filteredOrders.map(order => <OrderCard key={order.id} order={order} copyOrderId={copyOrderId} />)}
+                {filteredOrders.map(order => <OrderCard key={order.id} order={order} joinButton={true} />)}
                 <Card variant="outlined" sx={{minWidth: "350px", minHeight: "210px", padding: "25px", backgroundColor: "primary.light", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                     <Typography variant="h6">No order that's right for you?</Typography>
                     <Button variant="contained" size="large" color="primary" sx={{marginTop: "15px", fontSize: "1.1em", fontWeight: "700"}}><AddIcon sx={{marginRight: "5px"}}/>Start an order</Button>
                 </Card>
             </Box>
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                onClose={handleClose}
-            >
-                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    Order ID copied to clipboard!
-                </Alert>
-            </Snackbar>
         </Container>
     </>);
 }
