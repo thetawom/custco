@@ -10,8 +10,9 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import Box from "@mui/material/Box";
+import {Link} from "react-router-dom";
 
-const Order = ({order, copyOrderId}) => {
+const OrderCard = ({order, copyOrderId}) => {
 
     return (
         <Card sx={{minWidth: "350px", minHeight: "210px"}}>
@@ -50,7 +51,7 @@ const Order = ({order, copyOrderId}) => {
                     <Typography variant="caption">Pay By</Typography>
                     <Typography variant="p" lineHeight={0.8} marginBottom={0.6}>{order.paymentMethod.name}</Typography>
                 </Stack>
-                <Button sx={{
+                <Button component={Link} to={`/orders/${order.id}`} sx={{
                     color: "primary.contrastText",
                     backgroundColor: "primary.main",
                     fontSize: 14,
@@ -67,4 +68,4 @@ const Order = ({order, copyOrderId}) => {
     );
 }
 
-export default Order;
+export default OrderCard;

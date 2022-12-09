@@ -79,7 +79,7 @@ function HomePage() {
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center" flexWrap="wrap" paddingTop="25px">
                 <BigButton icon={CardGiftcardIcon} title="Browse Orders" to="/orders"/>
-                <BigButton icon={AddIcon} title="Start an Order"/>
+                <BigButton icon={AddIcon} title="Start an OrderCard"/>
                 <BigButton icon={ShoppingCartIcon} title="My Orders"/>
             </Box>
         </Container>

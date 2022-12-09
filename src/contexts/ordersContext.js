@@ -11,22 +11,23 @@ export const OrdersProvider = ({children}) => {
     const hazelZhu = new User(1, "Hazel", "Zhu");
     const maxTseng = new User(12, "Max", "Tseng", true);
 
-    const orders = [
-        new Order(9889400, Platform.Amazon, tonyDear, 1.00, PaymentMethod.Cash, 22),
-        new Order(9889401, Platform.Amazon, ethanWu, 1.50, PaymentMethod.Venmo, 5),
-        new Order(9889402, Platform.Costco, ethanWu, 2.00, PaymentMethod.Venmo, 32),
-        new Order(9889403, Platform.Amazon, harukiGonai, 0.50, PaymentMethod.Venmo, 7),
-        new Order(9889404, Platform.Walmart, harukiGonai, 0.50, PaymentMethod.Venmo, 30),
-        new Order(9889405, Platform.Walmart, tonyDear, 0, PaymentMethod.Zelle, 15),
-        new Order(9889406, Platform.Amazon, hazelZhu, 1.00, PaymentMethod.Zelle, 20),
-        new Order(9889407, Platform.Target, hazelZhu, 1.00, PaymentMethod.Zelle, 12),
-        new Order(9889408, Platform.HomeDepot, maxTseng, 0.50, PaymentMethod.Zelle, 36),
-        new Order(9889409, Platform.JCPenney, maxTseng, 0.50, PaymentMethod.Zelle, 14),
-        new Order(9889410, Platform.Costco, maxTseng, 1.00, PaymentMethod.Zelle, 28),
-    ]
+    const ordersMap = new Map([
+        [9889400, new Order(9889400, Platform.Amazon, tonyDear, 1.00, PaymentMethod.Cash, 22)],
+        [9889401, new Order(9889401, Platform.Amazon, ethanWu, 1.50, PaymentMethod.Venmo, 5)],
+        [9889402, new Order(9889402, Platform.Costco, ethanWu, 2.00, PaymentMethod.Venmo, 32)],
+        [9889403, new Order(9889403, Platform.Amazon, harukiGonai, 0.50, PaymentMethod.Venmo, 7)],
+        [9889404, new Order(9889404, Platform.Walmart, harukiGonai, 0.50, PaymentMethod.Venmo, 30)],
+        [9889405, new Order(9889405, Platform.Walmart, tonyDear, 0, PaymentMethod.Zelle, 15)],
+        [9889406, new Order(9889406, Platform.Amazon, hazelZhu, 1.00, PaymentMethod.Zelle, 20)],
+        [9889407, new Order(9889407, Platform.Target, hazelZhu, 1.00, PaymentMethod.Zelle, 12)],
+        [9889408, new Order(9889408, Platform.HomeDepot, maxTseng, 0.50, PaymentMethod.Zelle, 36)],
+        [9889409, new Order(9889409, Platform.JCPenney, maxTseng, 0.50, PaymentMethod.Zelle, 14)],
+        [9889410, new Order(9889410, Platform.Costco, maxTseng, 1.00, PaymentMethod.Zelle, 28)],
+    ]);
 
     const contextData = {
-        orders: orders
+        orders: Array.from(ordersMap.values()),
+        findOrder: id => ordersMap.get(Number(id))
     };
 
     return (
