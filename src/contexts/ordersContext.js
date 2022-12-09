@@ -1,4 +1,4 @@
-import {createContext} from "react";
+import {createContext, useState} from "react";
 import {Order, PaymentMethod, Platform, User} from "../schema";
 
 export const OrdersContext = createContext(undefined);
@@ -11,7 +11,7 @@ export const OrdersProvider = ({children}) => {
     const hazelZhu = new User(1, "Hazel", "Zhu");
     const maxTseng = new User(12, "Max", "Tseng", true);
 
-    const ordersMap = new Map([
+    const ORDERS_MAP = new Map([
         [9889400, new Order(9889400, Platform.Amazon, tonyDear, 1.00, PaymentMethod.Cash, 22)],
         [9889401, new Order(9889401, Platform.Amazon, ethanWu, 1.50, PaymentMethod.Venmo, 5)],
         [9889402, new Order(9889402, Platform.Costco, ethanWu, 2.00, PaymentMethod.Venmo, 32)],
@@ -25,9 +25,18 @@ export const OrdersProvider = ({children}) => {
         [9889410, new Order(9889410, Platform.Costco, maxTseng, 1.00, PaymentMethod.Zelle, 28)],
     ]);
 
+    const [ordersMap, setOrdersMap] = useState(ORDERS_MAP);
+
+    const orders = Array.from(ordersMap.values());
+    const setOrders = (orders) => setOrdersMap(new Map(orders.map(order => [order.id, order])));
+    const findOrder = (id) => ordersMap.get(Number(id));
+    const updateOrder = (id, order) => setOrdersMap(ordersMap.set(id, order));
+
     const contextData = {
-        orders: Array.from(ordersMap.values()),
-        findOrder: id => ordersMap.get(Number(id))
+        orders: orders,
+        setOrders: setOrders,
+        findOrder: findOrder,
+        updateOrder: updateOrder,
     };
 
     return (

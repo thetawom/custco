@@ -62,9 +62,7 @@ export class PaymentMethod {
 }
 
 export class Item {
-    constructor(order, user, name, url, price) {
-        this.order = order;
-        this.user = user;
+    constructor(name, url, price) {
         this.name = name;
         this.url = url;
         this.price = price;
@@ -72,29 +70,39 @@ export class Item {
 }
 
 export class Order {
-    constructor(id, platform, initiator, fee, paymentMethod, baseAmount) {
+    constructor(id, platform, initiator, fee, paymentMethod, baseAmount, items = []) {
         this.id = id;
         this.platform = platform;
         this.initiator = initiator;
         this.fee = fee;
         this.paymentMethod = paymentMethod;
         this.baseAmount = baseAmount;
-        this.items = [];
+        this.items = items;
     }
 
     get amount() {
-        return this.baseAmount + this.items.reduce((item, currSum) => currSum + item.price, 0);
+        return this.baseAmount + this.items.reduce((currSum, item) => currSum + item.price, 0);
     }
     get remaining() {
         return Math.max(this.platform.threshold - this.amount, 0);
     }
     get percentage() {
-        return Math.min(100 * this.amount / this.platform.threshold, 100)
+        return Math.min(100 * this.amount / this.platform.threshold, 100);
+    }
+    get remainingWhole() {
+        return this.remaining.toFixed(0);
+    }
+    get remainingCents() {
+        return ((this.remaining % 1) * 100).toFixed(0).padStart(2, "0");
     }
 
-    addItem(user, name, url, price) {
-        const item = new Item(this, user, name, url, price);
-        this.items.push(item);
-        return item;
+    static newWithoutItem(order, i) {
+        const items = order.items.filter((o, j) => i !== j);
+        return new Order(order.id, order.platform, order.initiator, order.fee, order.paymentMethod, order.baseAmount, items);
+    }
+
+    static newWithItem(order, item) {
+        const items = [...order.items, item];
+        return new Order(order.id, order.platform, order.initiator, order.fee, order.paymentMethod, order.baseAmount, items);
     }
 }
