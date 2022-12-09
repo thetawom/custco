@@ -29,8 +29,8 @@ import {Platform} from "../schema";
 
 
 class SortOption {
-    static OrderProgressHL = new SortOption(0, "OrderCard Progress (High to Low)", (o1, o2) => o1.remaining - o2.remaining);
-    static OrderProgressLH = new SortOption(1, "OrderCard Progress (Low to High)", (o1, o2) => o2.remaining - o1.remaining);
+    static OrderProgressHL = new SortOption(0, "Order Progress (High to Low)", (o1, o2) => o1.remaining - o2.remaining);
+    static OrderProgressLH = new SortOption(1, "Order Progress (Low to High)", (o1, o2) => o2.remaining - o1.remaining);
     static InitiatorFeeLH = new SortOption(2, "Initiator Fee (Low to High)", (o1, o2) => o1.fee - o2.fee);
     static InitiatorFeeHL = new SortOption(3, "Initiator Fee (High to Low)", (o1, o2) => o2.fee - o1.fee);
     static FriendsFirst = new SortOption(4, "Friends First", (o1, o2) => o2.initiator.isFriend - o1.initiator.isFriend);

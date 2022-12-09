@@ -30,7 +30,7 @@ const theme = createTheme({
             fontWeight: 800,
         },
         h5: {
-            fontWeight: 600,
+            fontWeight: 800,
         },
         h6: {
             fontWeight: 600,
