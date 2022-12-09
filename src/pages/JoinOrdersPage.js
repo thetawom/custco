@@ -23,7 +23,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from '@mui/icons-material/Add';
 import {Link, Navigate, useParams} from "react-router-dom";
 import {OrdersContext} from "../contexts/ordersContext";
-import Order from "../components/Order";
+import OrderCard from "../components/OrderCard";
 import Span from "../components/Span";
 import Navbar from "../components/Navbar";
 import {Platform} from "../schema";
@@ -31,8 +31,8 @@ import {Platform} from "../schema";
 
 
 class SortOption {
-    static OrderProgressHL = new SortOption(0, "Order Progress (High to Low)", (o1, o2) => o1.remaining - o2.remaining);
-    static OrderProgressLH = new SortOption(1, "Order Progress (Low to High)", (o1, o2) => o2.remaining - o1.remaining);
+    static OrderProgressHL = new SortOption(0, "OrderCard Progress (High to Low)", (o1, o2) => o1.remaining - o2.remaining);
+    static OrderProgressLH = new SortOption(1, "OrderCard Progress (Low to High)", (o1, o2) => o2.remaining - o1.remaining);
     static InitiatorFeeLH = new SortOption(2, "Initiator Fee (Low to High)", (o1, o2) => o1.fee - o2.fee);
     static InitiatorFeeHL = new SortOption(3, "Initiator Fee (High to Low)", (o1, o2) => o2.fee - o1.fee);
     static FriendsFirst = new SortOption(4, "Friends First", (o1, o2) => o2.initiator.isFriend - o1.initiator.isFriend);
@@ -139,7 +139,7 @@ function JoinOrdersPage() {
                 </Card>
             }
             <Box display="flex" flexWrap="wrap" gap="30px 50px" justifyContent="start" alignItems="start" marginBottom="80px">
-                {filteredOrders.map(order => <Order key={order.id} order={order} copyOrderId={copyOrderId} />)}
+                {filteredOrders.map(order => <OrderCard key={order.id} order={order} copyOrderId={copyOrderId} />)}
                 <Card variant="outlined" sx={{minWidth: "350px", minHeight: "210px", padding: "25px", backgroundColor: "primary.light", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                     <Typography variant="h6">No order that's right for you?</Typography>
                     <Button variant="contained" size="large" color="primary" sx={{marginTop: "15px", fontSize: "1.1em", fontWeight: "700"}}><AddIcon sx={{marginRight: "5px"}}/>Start an order</Button>

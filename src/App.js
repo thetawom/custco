@@ -10,6 +10,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import HomePage from "./pages/HomePage";
 import JoinOrdersPage from "./pages/JoinOrdersPage";
 import {OrdersProvider} from "./contexts/ordersContext";
+import JoinOrderPage from "./pages/JoinOrderPage";
 
 const theme = createTheme({
     typography: {
@@ -85,6 +86,7 @@ function App() {
                             <Route path="/home" element={<HomePage />} />
                             <Route path="/orders/" element={<JoinOrdersPage />}/>
                             <Route path="/orders/platform/:id" element={<JoinOrdersPage />}/>
+                            <Route path="/orders/:id" element={<JoinOrderPage />}/>
                         </Routes>
                     </Router>
                 </OrdersProvider>
