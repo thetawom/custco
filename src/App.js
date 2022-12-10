@@ -34,7 +34,7 @@ const theme = createTheme({
         },
         h6: {
             fontWeight: 600,
-        }
+        },
     },
     palette: {
         primary: {
