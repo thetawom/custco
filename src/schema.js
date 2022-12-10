@@ -66,6 +66,13 @@ export class Item {
         this.name = name;
         this.url = url;
         this.price = price;
+        this.finalized = false;
+    }
+
+    static newFinalized(item) {
+        const newItem = new Item(item.name, item.url, item.price);
+        newItem.finalized = true;
+        return newItem;
     }
 }
 
@@ -80,20 +87,20 @@ export class Order {
         this.items = items;
     }
 
-    get amount() {
-        return this.baseAmount + this.items.reduce((currSum, item) => currSum + item.price, 0);
+    amount(tentative = false) {
+        return this.baseAmount + this.items.filter(item => tentative || item.finalized).reduce((currSum, item) => currSum + item.price, 0);
     }
-    get remaining() {
-        return Math.max(this.platform.threshold - this.amount, 0);
+    remaining(tentative = false) {
+        return Math.max(this.platform.threshold - this.amount(tentative), 0);
     }
-    get percentage() {
-        return Math.min(100 * this.amount / this.platform.threshold, 100);
+    percentage(tentative = false) {
+        return Math.min(100 * this.amount(tentative) / this.platform.threshold, 100);
     }
-    get remainingWhole() {
-        return this.remaining.toFixed(0);
+    remainingWhole(tentative = false) {
+        return this.remaining(tentative).toFixed(0);
     }
-    get remainingCents() {
-        return ((this.remaining % 1) * 100).toFixed(0).padStart(2, "0");
+    remainingCents(tentative = false) {
+        return ((this.remaining(tentative) % 1) * 100).toFixed(0).padStart(2, "0");
     }
 
     static newWithoutItem(order, i) {
@@ -103,6 +110,11 @@ export class Order {
 
     static newWithItem(order, item) {
         const items = [...order.items, item];
+        return new Order(order.id, order.platform, order.initiator, order.fee, order.paymentMethod, order.baseAmount, items);
+    }
+
+    static finalizeAll(order) {
+        const items = order.items.map(item => Item.newFinalized(item));
         return new Order(order.id, order.platform, order.initiator, order.fee, order.paymentMethod, order.baseAmount, items);
     }
 }

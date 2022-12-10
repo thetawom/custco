@@ -30,7 +30,7 @@ export const OrdersProvider = ({children}) => {
     const orders = Array.from(ordersMap.values());
     const setOrders = (orders) => setOrdersMap(new Map(orders.map(order => [order.id, order])));
     const findOrder = (id) => ordersMap.get(Number(id));
-    const updateOrder = (id, order) => setOrdersMap(ordersMap.set(id, order));
+    const updateOrder = (id, order) => setOrdersMap(new Map(ordersMap).set(id, order));
 
     const contextData = {
         orders: orders,

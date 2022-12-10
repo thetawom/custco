@@ -14,7 +14,7 @@ import Box from "@mui/material/Box";
 import {Link} from "react-router-dom";
 import Span from "./Span";
 
-const OrderCard = ({order, joinButton, outlined}) => {
+const OrderCard = ({order, joinButton, outlined, tentative=false}) => {
 
     const [open, setOpen] = React.useState(false);
     const copyOrderId = async (orderId) => {
@@ -46,10 +46,10 @@ const OrderCard = ({order, joinButton, outlined}) => {
             <Stack display="flex" direction="row" justifyContent="space-between" alignItems="center" padding="15px 20px">
                 <Stack spacing={1} direction="column" marginBottom="3px">
                     <Box>
-                        <Typography variant="h3" display="inline-block">${order.remainingWhole}.<Span sx={{fontSize: "0.7em", fontWeight: "800"}}>{order.remainingCents}</Span></Typography>
+                        <Typography variant="h3" display="inline-block">${order.remainingWhole(tentative)}.<Span sx={{fontSize: "0.7em", fontWeight: "800"}}>{order.remainingCents(tentative)}</Span></Typography>
                         <Typography variant="h4" display="inline-block" marginLeft="10px">to go</Typography>
                     </Box>
-                    <LinearProgress variant="determinate" color="success" value={order.percentage}/>
+                    <LinearProgress variant="determinate" color="success" value={order.percentage(tentative)}/>
                 </Stack>
                 <Stack alignItems="center">
                     <Badge badgeContent="Friend" color="secondary" overlap="circular" anchorOrigin={{vertical: "bottom", horizontal: "right"}} invisible={!order.initiator.isFriend}>
