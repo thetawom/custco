@@ -49,7 +49,7 @@ const OrderCard = ({order, joinButton, outlined, tentative=false}) => {
                         <Typography variant="h3" display="inline-block">${order.remainingWhole(tentative)}.<Span sx={{fontSize: "0.7em", fontWeight: "800"}}>{order.remainingCents(tentative)}</Span></Typography>
                         <Typography variant="h4" display="inline-block" marginLeft="10px">to go</Typography>
                     </Box>
-                    <LinearProgress variant="determinate" color={tentative ? "secondary" : "success"} value={order.percentage(tentative)}/>
+                    <LinearProgress variant={tentative ? "buffer" : "determinate"} color={tentative ? "secondary" : "success"} value={order.percentage()} valueBuffer={order.percentage(tentative)} />
                 </Stack>
                 <Stack alignItems="center">
                     <Badge badgeContent="Friend" color="secondary" overlap="circular" anchorOrigin={{vertical: "bottom", horizontal: "right"}} invisible={!order.initiator.isFriend}>
