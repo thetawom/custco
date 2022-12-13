@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/custco/static/css/main.073c9b0a.css",
-    "main.js": "/custco/static/js/main.6a4dc1c2.js",
+    "main.js": "/custco/static/js/main.10a72b6f.js",
     "static/js/787.d0cdf5fa.chunk.js": "/custco/static/js/787.d0cdf5fa.chunk.js",
     "static/media/homedepot-square.png": "/custco/static/media/homedepot-square.4b4484644cf87ac986fe.png",
     "static/media/amazon-square.png": "/custco/static/media/amazon-square.9e2fae1caa05d8c2a054.png",
@@ -13,11 +13,11 @@
     "static/media/bestbuy-square.svg": "/custco/static/media/bestbuy-square.51636709a3bc7aa429ffcc2b0491bded.svg",
     "index.html": "/custco/index.html",
     "main.073c9b0a.css.map": "/custco/static/css/main.073c9b0a.css.map",
-    "main.6a4dc1c2.js.map": "/custco/static/js/main.6a4dc1c2.js.map",
+    "main.10a72b6f.js.map": "/custco/static/js/main.10a72b6f.js.map",
     "787.d0cdf5fa.chunk.js.map": "/custco/static/js/787.d0cdf5fa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.6a4dc1c2.js"
+    "static/js/main.10a72b6f.js"
   ]
 }
