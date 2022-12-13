@@ -5,13 +5,15 @@ export const OrdersContext = createContext(undefined);
 
 export const OrdersProvider = ({children}) => {
 
-    const tonyDear = new User(5, "Tony", "Dear");
+    const jojoWu = new User(5, "Jojo", "Wu");
+    const tonyDear = new User(0, "Tony", "Dear");
     const ethanWu = new User(2, "Ethan", "Wu", true);
     const harukiGonai = new User(4, "Haruki", "Gonai");
     const hazelZhu = new User(1, "Hazel", "Zhu");
     const maxTseng = new User(12, "Max", "Tseng", true);
 
     const ORDERS_MAP = new Map([
+        [9889399, new Order(9889399, Platform.Muji, jojoWu, 1.00, PaymentMethod.Zelle, 0)],
         [9889400, new Order(9889400, Platform.Amazon, tonyDear, 1.00, PaymentMethod.Cash, 22)],
         [9889401, new Order(9889401, Platform.Amazon, ethanWu, 1.50, PaymentMethod.Venmo, 5)],
         [9889402, new Order(9889402, Platform.Costco, ethanWu, 2.00, PaymentMethod.Venmo, 32)],
