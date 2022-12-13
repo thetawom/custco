@@ -62,6 +62,9 @@ function JoinOrdersPage() {
         setShowConfirmation(true);
     }
 
+    const cartEmpty = order.items.filter(item => !item.finalized).length === 0;
+    const finalizedEmpty = order.items.filter(item => item.finalized).length === 0;
+
     return (<>
         <Navbar />
         <Container fixed sx={{marginTop: "100px"}}>
@@ -70,7 +73,7 @@ function JoinOrdersPage() {
                     {
                         !showConfirmation &&
                         <Paper sx={{padding: "20px 30px 30px", marginBottom: "20px"}}>
-                            <Typography variant="h5" marginBottom="10px">Add Items to Order</Typography>
+                            <Typography variant="h5" marginBottom="10px">{`Add Items to ${order.initiator.firstName}'s ${order.platform.name} Order`}</Typography>
                             <Divider sx={{marginBottom: "25px"}}/>
                             <form onSubmit={handleSubmit}>
                                 <FormControl fullWidth>
@@ -94,7 +97,7 @@ function JoinOrdersPage() {
                         </Paper>
                     }
                     {
-                        order.items.filter(item => !item.finalized).length === 0 ? <></> :
+                        cartEmpty ? <></> :
                             <Paper sx={{padding: "20px 30px"}}>
                                 <Typography variant="h5" marginBottom="10px">Your Shopping Cart</Typography>
                                 <Divider sx={{marginBottom: "5px"}} />
@@ -119,9 +122,9 @@ function JoinOrdersPage() {
                     <Paper sx={{padding: "20px 30px 30px"}}>
                         <Typography variant="h5" marginBottom="10px">Order Summary</Typography>
                         <Divider sx={{marginBottom: "25px"}} />
-                        <OrderCard order={order} joinButton={false} outlined tentative />
+                        <OrderCard order={order} joinButton={false} outlined tentative={!cartEmpty} />
                         {
-                            order.items.filter(item => item.finalized).length === 0 ? <></> :
+                            finalizedEmpty ? <></> :
                                 <>
                                     <List dense sx={{marginTop: "10px"}}>
                                         {order.items.map((item, i) => (

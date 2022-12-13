@@ -29,8 +29,8 @@ import {Platform} from "../schema";
 
 
 class SortOption {
-    static OrderProgressHL = new SortOption(0, "Order Progress (High to Low)", (o1, o2) => o1.remaining - o2.remaining);
-    static OrderProgressLH = new SortOption(1, "Order Progress (Low to High)", (o1, o2) => o2.remaining - o1.remaining);
+    static AmountToGoLH = new SortOption(0, "$ Amount to Go (Low to High)", (o1, o2) => o1.remaining() - o2.remaining());
+    static AmountToGoHL = new SortOption(1, "$ Amount to Go (High to Low)", (o1, o2) => o2.remaining() - o1.remaining());
     static InitiatorFeeLH = new SortOption(2, "Initiator Fee (Low to High)", (o1, o2) => o1.fee - o2.fee);
     static InitiatorFeeHL = new SortOption(3, "Initiator Fee (High to Low)", (o1, o2) => o2.fee - o1.fee);
     static FriendsFirst = new SortOption(4, "Friends First", (o1, o2) => o2.initiator.isFriend - o1.initiator.isFriend);
@@ -42,7 +42,7 @@ class SortOption {
     }
 
     static all() {
-        return [this.OrderProgressHL, this.OrderProgressLH, this.InitiatorFeeLH, this.InitiatorFeeHL, this.FriendsFirst];
+        return [this.AmountToGoLH, this.AmountToGoHL, this.InitiatorFeeLH, this.InitiatorFeeHL, this.FriendsFirst];
     }
     static isValid(id) {
         return id < this.all().length;
@@ -57,7 +57,7 @@ function JoinOrdersPage() {
 
     const {orders} = useContext(OrdersContext);
 
-    const [sort, setSort] = React.useState(SortOption.OrderProgressHL);
+    const [sort, setSort] = React.useState(SortOption.AmountToGoLH);
     const handleChange = (event) => {
         setSort(SortOption.getById(event.target.value));
     }

@@ -24,7 +24,7 @@ export class User {
 export class Platform {
     static Amazon = new Platform(0, "Amazon", 25, AmazonLogo, 12);
     static Costco = new Platform(1, "Costco", 75, CostcoLogo, 0);
-    static Muji = new Platform(2, "Muji", 100, MujiLogo, 0);
+    static Muji = new Platform(2, "Muji", 75, MujiLogo, 0);
     static Walmart = new Platform(3, "Walmart", 35, WalmartLogo, 0);
     static Target = new Platform(4, "Target", 35, TargetLogo, 0);
     static Macys = new Platform(5, "Macy's", 36, MacysLogo, 5);
