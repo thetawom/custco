@@ -22,19 +22,20 @@ export class User {
 }
 
 export class Platform {
-    static Amazon = new Platform(0, "Amazon", 25, AmazonLogo, 12);
-    static Costco = new Platform(1, "Costco", 75, CostcoLogo, 0);
-    static Muji = new Platform(2, "Muji", 75, MujiLogo, 0);
-    static Walmart = new Platform(3, "Walmart", 35, WalmartLogo, 0);
-    static Target = new Platform(4, "Target", 35, TargetLogo, 0);
-    static Macys = new Platform(5, "Macy's", 36, MacysLogo, 5);
-    static JCPenney = new Platform(6, "JC Penney", 50, JCPenneyLogo, 0);
-    static BestBuy = new Platform(7, "Best Buy", 35, BestBuyLogo, 7);
-    static HomeDepot = new Platform(8, "Home Depot", 45, HomeDepotLogo, 0);
+    static Amazon = new Platform(0, "Amazon", "https://www.amazon.com",25, AmazonLogo, 12);
+    static Costco = new Platform(1, "Costco", "https://www.costco.com", 75, CostcoLogo, 0);
+    static Muji = new Platform(2, "Muji", "https://www.muji.com",75, MujiLogo, 0);
+    static Walmart = new Platform(3, "Walmart", "https://www.walmart.com",35, WalmartLogo, 0);
+    static Target = new Platform(4, "Target", "https://www.target.com", 35, TargetLogo, 0);
+    static Macys = new Platform(5, "Macy's", "https://www.macys.com", 36, MacysLogo, 5);
+    static JCPenney = new Platform(6, "JC Penney", "https://www.jcpenney.com", 50, JCPenneyLogo, 0);
+    static BestBuy = new Platform(7, "Best Buy", "https://www.bestbuy.com",35, BestBuyLogo, 7);
+    static HomeDepot = new Platform(8, "Home Depot", "https://www.homedepot.com", 45, HomeDepotLogo, 0);
 
-    constructor(id, name, threshold, logo, padding) {
+    constructor(id, name, url, threshold, logo, padding) {
         this.id = id;
         this.name = name;
+        this.url = url;
         this.threshold = threshold;
         this.logo = logo;
         this.padding = padding;

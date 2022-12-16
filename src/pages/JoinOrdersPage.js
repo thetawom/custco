@@ -18,7 +18,8 @@ import {
     Tooltip, Button,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
+import AppsIcon from "@mui/icons-material/Apps";
 import {Link, Navigate, useParams} from "react-router-dom";
 import {OrdersContext} from "../contexts/ordersContext";
 import OrderCard from "../components/OrderCard";
@@ -77,8 +78,8 @@ function JoinOrdersPage() {
     }
 
     const title = platform ?
-        <Typography variant="h4">Join orders from <Span color="primary.dark">{platform.name}</Span></Typography>
-        : <Typography variant="h4">Browse all public orders</Typography>;
+        <Typography variant="h4">Join Orders From <Span color="primary.dark" sx={{":hover": {textDecoration: "underline"}}}><a href={platform.url} target="_blank" rel="noreferrer" style={{color: "inherit", textDecoration: "none"}}>{platform.name}</a></Span></Typography>
+        : <Typography variant="h4">Browse All Public Orders</Typography>;
 
     filteredOrders = filteredOrders.sort(sort.sorter);
 
@@ -104,29 +105,32 @@ function JoinOrdersPage() {
                 </FormControl>
             </Stack>
             <Divider sx={{marginBottom: "20px"}}/>
-            {
-                !platform &&
-                <Card variant="outlined" sx={{padding: "12px 20px", marginBottom: "30px", backgroundColor: "primary.light"}}>
-                    <Typography variant="h6" marginBottom={1.4} lineHeight={0.9}>Popular platforms</Typography>
-                    <Stack direction="row" divider={<Divider orientation="vertical" flexItem light />} spacing={2}>
-                        {
-                            Platform.all().map(platform => (
-                                <Tooltip key={platform.id} title={platform.name} arrow>
-                                    <Card variant="outlined" sx={{width: "60px", minWidth: "60px", height: "60px", borderRadius: "50%"}}>
-                                        <ButtonBase component={Link} to={`/orders/platform/${platform.id}`}
-                                                    sx={{width: "100%", height: "100%"}}>
-                                            <Box padding={`${platform.padding}px`} margin="auto">
-                                                <Avatar src={platform.logo} alt={platform.name}
-                                                        sx={{borderRadius: "0", width: "100%", height: "auto"}}/>
-                                            </Box>
-                                        </ButtonBase>
-                                    </Card>
-                                </Tooltip>
-                            ))
-                        }
-                    </Stack>
-                </Card>
-            }
+            <Card variant="outlined" sx={{padding: "12px 20px", marginBottom: "30px", backgroundColor: "primary.light"}}>
+                <Typography variant="h6" marginBottom={1.4} lineHeight={0.9}>Popular Platforms</Typography>
+                <Stack direction="row" divider={<Divider orientation="vertical" flexItem light />} spacing={2}>
+                    <Tooltip title="All Orders" arrow>
+                        <Box padding="auto" marginY="auto" marginLeft="5px">
+                            <ButtonBase component={Link} disableRipple to="/orders/">
+                                <AppsIcon fontSize="large"/>
+                            </ButtonBase>
+                        </Box>
+                    </Tooltip>
+                    {
+                        Platform.all().map(p => (
+                            <Tooltip key={p.id} title={p.name} arrow>
+                                <Card variant="outlined" sx={{width: "60px", minWidth: "60px", height: "60px", borderRadius: "50%", borderWidth: platform === p ? 2 : 0, borderColor: "secondary.main"}}>
+                                    <ButtonBase component={Link} to={`/orders/platform/${p.id}`}
+                                                sx={{width: "100%", height: "100%"}}>
+                                        <Box padding={`${p.padding}px`} margin="auto">
+                                            <Avatar src={p.logo} alt={p.name} sx={{borderRadius: "0", width: "100%", height: "auto"}}/>
+                                        </Box>
+                                    </ButtonBase>
+                                </Card>
+                            </Tooltip>
+                        ))
+                    }
+                </Stack>
+            </Card>
             <Box display="flex" flexWrap="wrap" gap="30px 50px" justifyContent="start" alignItems="start" marginBottom="80px">
                 {filteredOrders.map(order => <OrderCard key={order.id} order={order} joinButton={true} />)}
                 <Card variant="outlined" sx={{minWidth: "350px", minHeight: "210px", padding: "25px", backgroundColor: "primary.light", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
