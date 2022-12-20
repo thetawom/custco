@@ -1,6 +1,5 @@
 import {Link, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
-import {OrdersContext} from "../contexts/ordersContext";
 import Navbar from "../components/Navbar";
 import {
     Box,
@@ -17,6 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import OrderCard from "../components/OrderCard";
 import {Item, Order} from "../schema";
+import {OrdersContext} from "../contexts/ordersContext";
 import OrderCartList from "../components/OrderCartList";
 
 function JoinOrdersPage() {
@@ -65,6 +65,17 @@ function JoinOrdersPage() {
     const cartEmpty = order.items.filter(item => !item.finalized).length === 0;
     const finalizedEmpty = order.items.filter(item => item.finalized).length === 0;
 
+    const isUrlValid = url => {
+        let urlPattern = new RegExp('^(https?:\\/\\/)?'+
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+
+            '(\\#[-a-z\\d_]*)?$','i');
+        return !!urlPattern.test(url);
+    }
+
+
     return (<>
         <Navbar />
         <Container fixed sx={{marginTop: "100px"}}>
@@ -81,14 +92,14 @@ function JoinOrdersPage() {
                                         <TextField label="Item Name" value={name} onChange={handleNameChange} fullWidth
                                                    size="small" required/>
                                         <TextField label="Product Link" value={url} onChange={handleUrlChange} fullWidth
-                                                   size="small" required type="url"/>
+                                                   size="small" required error={url !== "" && !isUrlValid(url)} />
                                         <TextField label="Item Price" value={price} onChange={handlePriceChange}
                                                    fullWidth size="small" required type="number"
                                                    inputProps={{step: "0.01"}} InputProps={{
                                             startAdornment: <InputAdornment position={"start"}>$</InputAdornment>
                                         }}/>
                                     </Stack>
-                                    <Button type="submit" variant="contained" fullWidth
+                                    <Button type="submit" variant="contained" fullWidth disabled={name === "" || url === "" || !isUrlValid(url) || price === ""}
                                             sx={{marginTop: "30px", fontWeight: "800"}}>
                                         <AddIcon sx={{marginRight: "5px"}}/> Add to Order
                                     </Button>
